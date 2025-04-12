@@ -1,9 +1,6 @@
 package streams;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -44,7 +41,7 @@ class Scratch {
                 .sorted(Comparator.comparing(Student::getAge).thenComparing(Student::getGrade))
                 .forEach(System.out::println);
 
-        // Get a comma seperated list of student names
+        // Get a comma separated list of student names
         System.out.println(students.stream()
                 .map(s -> s.getFirstName() + " " + s.getLastName())
                 .collect(Collectors.joining(", ")));
@@ -72,6 +69,24 @@ class Scratch {
                 .max(Comparator.comparing(s -> (s.getFirstName() + " " + s.getLastName()).length()))
                 .ifPresentOrElse(System.out::println, () -> {});
 
+        // Find the second-highest grade in all students
+        Optional<Student> secondHighestGrade = students.stream()
+                .sorted(Comparator.comparing(Student::getGrade).reversed())
+                .limit(2)
+                .skip(1)
+                .findFirst();
+        System.out.println("Second Highest graded candidate" + secondHighestGrade);
+
+        // Count the no of students from each city
+        students.stream()
+                .collect(Collectors.groupingBy(Student::getCity, Collectors.counting()))
+                .forEach((s, aLong) -> System.out.println(s + " " + aLong));
+
+        // Find the student with longest lastname
+        students.stream()
+                .max(Comparator.comparing(student -> student.getLastName().length()))
+                //.max((o1, o2) -> o1.getLastName().length() - o2.getLastName().length())
+                .ifPresent(student -> System.out.println("Longest Last Name " + student));
     }
 
 }
