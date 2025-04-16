@@ -4,32 +4,39 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class InConsistencyRaceConditionOrder3 {
     //https://youtu.be/F2nuvXJHYxQ?t=1783
-    public static void main(String[] args) {
-        SharedObject sharedObject = new SharedObject();
-        //AtomicSharedObject sharedObject = new AtomicSharedObject();
+    public static void main(String[] args) throws InterruptedException {
+        //SharedObject sharedObject = new SharedObject();
+        AtomicSharedObject sharedObject = new AtomicSharedObject();
 
-        new Thread(() -> {
+        Thread thread1 = new Thread(() -> {
             System.out.println("t1 Started");
-            for (int value = 0; value < 50000; value++) {
+            for (int value = 0; value < 5000; value++) {
+                //System.out.println("T1 incrementing");
                 sharedObject.increment();
             }
             System.out.println("t1 Ended");
-        }).start();
+        });
+        thread1.start();
 
-        new Thread(() -> {
+        Thread thread2 = new Thread(() -> {
             System.out.println("t2 Started");
-            for (int value = 0; value < 50000; value++) {
+            for (int value = 0; value < 5000; value++) {
+                //System.out.println("T2 incrementing");
                 sharedObject.increment();
             }
             System.out.println("t2 Ended");
-        }).start();
+        });
+        thread2.start();
+
+        thread1.join();
+        thread2.join();
 
         System.out.println("Main Ended with counter value = " + sharedObject.getCounter());
     }
 }
 
 class SharedObject {
-    private int counter = 0;
+    private Integer counter = 0;
 
     public synchronized void increment() {
         counter++;
