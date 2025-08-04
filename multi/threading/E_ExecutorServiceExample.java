@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ExecutorServiceExampleOrder5 {
+public class E_ExecutorServiceExample {
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();

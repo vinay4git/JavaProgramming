@@ -1,6 +1,6 @@
 package multi.threading;
 
-public class ThreadLocalExampleOrder4 {
+public class D_ThreadLocalExample {
     public static void main(String[] args) throws InterruptedException {
         // Here if we see we used one common variable declaration across two threads without any Multi Threading issue.
         ThreadLocal<String> sharedThreadLocal = new ThreadLocal<>();

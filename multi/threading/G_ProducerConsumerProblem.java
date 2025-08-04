@@ -9,7 +9,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ProducerConsumerProblemOrder7 {
+public class G_ProducerConsumerProblem {
 
     // Producer consumer problem is when there is a shared queue between a producer who puts data and consumer who takes data
     // And when is lag between them if producer is faster and consumer is slower or viceversa.
@@ -311,7 +311,7 @@ class ReentrantLockBuffer {
         added = reentrantLock.newCondition();
     }
 
-    public void produce(int i) throws InterruptedException {
+    public synchronized void produce(int i) throws InterruptedException {
         reentrantLock.lock();
 
         // In some rare cases thread might come of await state it is called as spurious wakeups.

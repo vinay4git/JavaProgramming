@@ -1,6 +1,6 @@
 package multi.threading;
 
-public class VisibilityProblemOrder2 {
+public class B_VisibilityProblem {
     public static void main(String[] args) {
         SharedData sharedData = new SharedData();
 

@@ -3,7 +3,7 @@ package multi.threading;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ReentrantLockOrder9 {
+public class I_ReentrantLock {
     static ReentrantLock reentrantLock = new ReentrantLock();
 
     public static void main(String[] args) throws InterruptedException {

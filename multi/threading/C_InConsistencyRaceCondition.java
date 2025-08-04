@@ -2,7 +2,7 @@ package multi.threading;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class InConsistencyRaceConditionOrder3 {
+public class C_InConsistencyRaceCondition {
     //https://youtu.be/F2nuvXJHYxQ?t=1783
     public static void main(String[] args) throws InterruptedException {
         //SharedObject sharedObject = new SharedObject();

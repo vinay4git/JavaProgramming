@@ -1,6 +1,6 @@
 package multi.threading;
 
-public class JavaThreadOrder1 {
+public class A_JavaThread {
     public static void main(String[] args) {
         System.out.println("Hello world");
 
