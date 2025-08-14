@@ -1,4 +1,4 @@
-package multi.threading.race;
+package multi.threading.J_CountDownLatch_Race;
 
 import java.util.concurrent.CountDownLatch;
 

@@ -1,6 +1,5 @@
-package multi.threading.race;
+package multi.threading.J_CountDownLatch_Race;
 
-import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 class Referee implements Runnable {

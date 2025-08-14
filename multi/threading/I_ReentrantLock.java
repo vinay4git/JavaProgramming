@@ -32,9 +32,9 @@ public class I_ReentrantLock {
 
         accessResourceRec(1);
 
-        // same behaviour with syncronized also .. As the same thread is trying to access the syncrized block.
-        // Since it already had the lock ... recrsive call will get the access.
-        accessResourceRecSyncronized(1);
+        // same behaviour with synchronized also .. As the same thread is trying to access the synchronized block.
+        // Since it already had the lock ... recursive call will get the access.
+        accessResourceRecSynchronized(1);
 
 
         // fair lock
@@ -51,7 +51,7 @@ public class I_ReentrantLock {
 
 
     /**
-     * As this method call recusively ... same threod will acquire lock
+     * As this method call recursively ... same thread will acquire lock
      * but in background lock is not acquired. Jut the hold count will be increased.
      */
     public static void accessResourceRec(int count) throws InterruptedException {
@@ -63,17 +63,17 @@ public class I_ReentrantLock {
         reentrantLock.unlock();
     }
 
-    public static synchronized void accessResourceRecSyncronized(int count) throws InterruptedException {
-        System.out.println("Syncronized count" + count);
+    public static synchronized void accessResourceRecSynchronized(int count) throws InterruptedException {
+        System.out.println("Synchronized count" + count);
         if (count < 10)
-            accessResourceRecSyncronized(count + 1);
+            accessResourceRecSynchronized(count + 1);
     }
 
     /**
      * tryLock will get the lock and send true if available. Else return false.
      * This helps in doing some other actions
      */
-    public static void accessResoureTryLock() {
+    public static void accessResourceTryLock() {
         boolean tryLock = reentrantLock.tryLock();
 
         if (tryLock) {
@@ -110,10 +110,11 @@ public class I_ReentrantLock {
     public static void makingTryLockFair() throws InterruptedException {
         ReentrantLock fairLock = new ReentrantLock(true);
 
-        // eventhough we are using fair lock. tryLock will not honor the fairness
+        // even though we are using fair lock. tryLock will not honor the fairness
         boolean tryUnfairLock = fairLock.tryLock();
 
         // workaround for this use tryLock with wait time
+        // By adding wait time ... try lock will act as a fair lock
         boolean tryFairLock = fairLock.tryLock(0, TimeUnit.SECONDS);
     }
 }

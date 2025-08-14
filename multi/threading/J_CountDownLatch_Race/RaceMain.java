@@ -1,7 +1,10 @@
-package multi.threading.race;
+package multi.threading.J_CountDownLatch_Race;
 
 import java.util.concurrent.CountDownLatch;
 
+/*
+    https://www.youtube.com/watch?v=Yd46R9E0Cj8
+* */
 public class RaceMain {
     private static final int NUM_PARTICIPANTS = 10;
 
